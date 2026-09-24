@@ -41,5 +41,11 @@ class User {
 	public function __toString() : string {
 		return 'User '.$this->username. '('.$this->id.') last connected at '.$this->lastConnection;
 	}
+
+
+	public function getCleanLastConnection() {
+		$date = date_create($this->lastConnection);
+		return date_format($date, 'd M Y à H:i');
+	}
 }
 

@@ -57,7 +57,6 @@ class ArticleDAO {
 
 		// parcourir le résultat de la requete (plusieurs lignes)
 		foreach($stmt->fetchAll() as $tabArticle) {
-
 			// créer un DTO article, le mettre a jour
 			$a = new Article;
 			$a->setId($tabArticle['id']);
@@ -80,5 +79,14 @@ class ArticleDAO {
 
 		// renvoyer le tableau
 		return $tab;
+	}
+
+
+	public function create(Article $article) {
+		// Exrait les informations de l'article passé en paramètre
+
+		// Insère les infos extraites dans la BDD
+
+		// La fonction renvoie l'id de l'article nouvellement créé
 	}
 }

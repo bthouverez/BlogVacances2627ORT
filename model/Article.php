@@ -37,10 +37,8 @@ class Article {
 	public function setUser(User $u) { $this->user = $u; }
 
 	public function getCleanPostedAt() {
-
-		$date = DateTime::createFromFormat('Y-m-d', $this->postedAt);
-		//->format('Y M d à h:i');
-		// var_dump($this->postedAt);die();
+		$date = date_create($this->postedAt);
+		return date_format($date, 'd M Y à H:i');
 	}
 
 }
