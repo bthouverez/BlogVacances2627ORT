@@ -37,14 +37,12 @@ class UserDAO {
 
 				$user->addArticle($a);
 			}
-
 		} else {
 			$user = new User();
 		}
 		
 		// renvoyer le User
 		return $user;
-
 	}
 
 		public function getAll() : array {
@@ -61,5 +59,6 @@ class UserDAO {
 			// mettre cet user dans un tableau
 
 		// renvoyer le tableau
+		return array();
 	}
 }

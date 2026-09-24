@@ -47,15 +47,38 @@ class ArticleDAO {
 
 	public function getAll() : array {
 		// faire la requete SQL pour récupérer tous les articles (avec l'auteur)
+		$sql = 'SELECT * FROM articles a JOIN users u ON u.id = a.idUser;';
+		//$stmt = $this->con->prepare($sql);
+		//$stmt->execute();
+		$stmt = $this->con->query($sql);
+		
+		$u = null;
+		$tab = [];
 
 		// parcourir le résultat de la requete (plusieurs lignes)
-		
+		foreach($stmt->fetchAll() as $tabArticle) {
+
 			// créer un DTO article, le mettre a jour
+			$a = new Article;
+			$a->setId($tabArticle['id']);
+			$a->setTitle($tabArticle['title']);
+			$a->setBody($tabArticle['body']);
+			$a->setImage($tabArticle['image']);
+			$a->setPostedAt($tabArticle['postedAt']);
 
 			// créer un DTO user pour l'auteur, et l'associer à l'article
+			$u = new User;
+			$u->setId($tabArticle[0]);
+			$u->setUsername($tabArticle['username']);
+			$u->setPassword($tabArticle['password']);
+			$u->setLastConnection($tabArticle['lastConnection']);
+			$a->setUser($u);
 
 			// mettre cet article dans un tableau
+			$tab[] = $a;
+		}
 
 		// renvoyer le tableau
+		return $tab;
 	}
 }

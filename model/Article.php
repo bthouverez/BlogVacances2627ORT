@@ -25,7 +25,7 @@ class Article {
 	public function getId(): int { return $this->id; }
 	public function getTitle(): string { return $this->title; }
 	public function getBody(): string { return $this->body; }
-	public function getImage(): string { return $this->image; }
+	public function getImage(): ?string { return $this->image; }
 	public function getPostedAt(): string { return $this->postedAt; }
 	public function getUser() : User { return $this->user; }
 
@@ -35,5 +35,12 @@ class Article {
 	public function setImage(?string $i): void { $this->image = $i; }
 	public function setPostedAt(string $p): void { $this->postedAt = $p; }
 	public function setUser(User $u) { $this->user = $u; }
+
+	public function getCleanPostedAt() {
+
+		$date = DateTime::createFromFormat('Y-m-d', $this->postedAt);
+		//->format('Y M d à h:i');
+		// var_dump($this->postedAt);die();
+	}
 
 }

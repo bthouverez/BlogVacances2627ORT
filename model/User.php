@@ -28,8 +28,8 @@ class User {
 	public function setUsername(string $u) : void { $this->username = $u; }
 	public function getPassword(): string { return $this->password; }
 	public function setPassword(string $p) : void { $this->password = $p; }
-	public function getlastConnection(): string { return $this->lastConnection; }
-	public function setlastConnection(string $lc) : void { $this->lastConnection = $lc; }
+	public function getLastConnection(): string { return $this->lastConnection; }
+	public function setLastConnection(string $lc) : void { $this->lastConnection = $lc; }
 	public function getArticles(): array { return $this->articles; }
 
 	public function addArticle(Article $a) : void { $this->articles[] = $a; }

@@ -23,13 +23,37 @@ ini_set('display_startup_errors', 1);
 require_once 'model/UserDAO.php';
 require_once 'model/ArticleDAO.php';
 $daoUser = new UserDAO;
-$u = $daoUser->getById(1);
+$u = $daoUser->getById(2);
+$users = $daoUser->getAll();
+
+
 
 $daoArticle = new ArticleDAO;
 $a = $daoArticle->getById(2);
+$articles = $daoArticle->getAll();
+
+echo "<h1>Bonjour ". $u->getUsername()." </h1>";
+echo "<h2>Tous les utilisateurs </h2>";
+foreach($users as $user) { ?>
+<section class="user" style="width: 700px; margin: 20px auto; min-height: 250px; border: 1px solid black; border-radius: 7px; padding: 25px; background: white">
+	<h2><?= $user->getUsername() ?></h2>
+	<h3>Co,nnecté pour la denière fois le <?= $user->getlastConnection() ?></h3>
+</section>
+<?php }
 
 
+echo "<h2>Tous les articles </h2>";
 
+foreach($articles as $article) { ?>
+
+<section class="article" style="width: 700px; margin: 20px auto; min-height: 250px; border: 1px solid black; border-radius: 7px; padding: 25px; background: white">
+	<h2><?= $article->getTitle() ?></h2>
+	<h3>Posté le <?= $article->getCleanPostedAt() ?> par <?= $article->getUser()->getUsername() ?></h3>
+	<p><img width="200" style="float: left; margin: 0 15px 5px 0" src="<?= $article->getImage() ?>" alt="image"><?= $article->getBody() ?></p>
+</section>
+
+
+<?php }
 /*
 require_once 'model/User.php';
 
@@ -40,17 +64,12 @@ echo '<br><br>';
 
 $u = new User();
 echo $u;
-*/
 
+
+
+*/
 ?>
 
-<h1>Bonjour <?= $u->getUsername() ?></h1>
-
-<section class="article" style="width: 700px; margin: auto; border: 1px solid black; border-radius: 7px; padding: 25px; background: white">
-	<h2><?= $a->getTitle() ?></h2>
-	<h3>Posté le <?= $a->getPostedAt() ?> par <?= $a->getUser()->getUsername() ?></h3>
-	<p><img width="200" style="float: left; margin: 0 15px 5px 0" src="<?= $a->getImage() ?>" alt="image"><?= $a->getBody() ?></p>
-</section>
 
 </body>
 </html>
