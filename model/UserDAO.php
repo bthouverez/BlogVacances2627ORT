@@ -88,4 +88,11 @@ class UserDAO {
 
 		return $this->con->lastInsertId();
 	}
+
+
+	public function delete($id) : void {
+		$sql = 'DELETE FROM users WHERE id = ?';
+		$stmt = $this->con->prepare($sql);
+		$stmt->execute([$id]);
+	}
 }
