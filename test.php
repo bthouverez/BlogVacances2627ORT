@@ -49,6 +49,20 @@ if(isset($_POST['btnAjoutUser'])) {
 	}
 }
 
+// Traiter l'ajout d'un article
+if(isset($_POST['btnAjoutArticle'])) {
+	if( !empty($_POST['title']) && 
+		!empty($_POST['body'])) {
+		$a = new Article;
+		$a->setTitle($_POST['title']);
+		$a->setBody($_POST['body']);
+		$a->setImage($_POST['image']);
+
+		$daoArticle->create($a);
+		echo 'Article ajouté dans la base';
+	}
+}
+
 
 $users = $daoUser->getAll();
 
@@ -81,6 +95,14 @@ echo "<h1>Bonjour ". $u->getUsername()." </h1>";
 
 
 
+
+
+<form method="post" action="test.php">
+	<input type="text" name="title" placeholder="Titre">
+	<input type="text" name="body" placeholder="Corps">
+	<input type="text" name="image" placeholder="Lien de l'image">
+	<button name="btnAjoutArticle">Enregistrer</button>
+</form>
 
 
 

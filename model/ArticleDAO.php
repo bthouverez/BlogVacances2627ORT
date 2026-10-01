@@ -83,10 +83,16 @@ class ArticleDAO {
 
 
 	public function create(Article $article) {
-		// Exrait les informations de l'article passé en paramètre
+		$sql = 'INSERT INTO articles (title, body, image, postedAt, idUser) VALUES
+		(?, ?, ?, NOW(), ?)';
+		$stmt = $this->con->prepare($sql);
+		$stmt->execute([
+			$article->getTitle(),
+			$article->getBody(),
+			$article->getImage(),
+			1
+		]);
 
-		// Insère les infos extraites dans la BDD
-
-		// La fonction renvoie l'id de l'article nouvellement créé
+		return $this->con->lastInsertId();
 	}
 }
